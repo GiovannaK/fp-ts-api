@@ -1,18 +1,17 @@
-import { Profile } from './profile'
-import { Tag } from './tag'
+import * as t from 'io-ts'
 
-export type Article = {
-  slug: string
-  title: string
-  description: string
-  body: string
-  tagList: Tag
-  createdAt: string
-  updatedAt: string
-  favorited: boolean
-  favoritesCount: number
-  author: Profile
-}
+export const articleCodec = t.type({
+  slug: t.string,
+  title: t.string,
+  description: t.string,
+  body: t.string,
+  createdAt: t.string,
+  updatedAt: t.string,
+  favorited: t.boolean,
+  favoriteCount: t.number,
+})
+
+export type Article = t.TypeOf<typeof articleCodec>
 
 export type Articles = {
   articles: Article[]
